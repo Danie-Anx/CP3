@@ -1,13 +1,13 @@
 /*JS index*/
 
 document.addEventListener('DOMContentLoaded', function() {
-    const userInfo = document.getElementById('user-info');
-    const logoutBtn = document.getElementById('logout-btn');
+    const logoutBtn = document.getElementById('logoutBtn');
 
     const user = JSON.parse(sessionStorage.getItem('loggedInUser'));
 
     if (user) {
-        userInfo.textContent = `Olá, ${user.email}!`;
+        document.getElementById('loginLink').style.display = 'none'; // Ocultar link de login
+        logoutBtn.style.display = 'block'; // Mostrar botão de logout
     }
 
     logoutBtn.addEventListener('click', function() {
@@ -19,14 +19,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-/*JS LOGIN*/
 
+/*JS LOGIN*/
 
 document.addEventListener('DOMContentLoaded', function() {
     const loginForm = document.getElementById('loginForm');
     const errorMessage = document.getElementById('error-message');
     const successMessage = document.getElementById('success-message');
-    const goToIndexBtn = document.getElementById('go-to-index');
     const logoutBtn = document.getElementById('logout-btn');
 
     // Simulação de um "banco de dados" com localStorage
@@ -52,7 +51,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 successMessage.textContent = 'Login realizado com sucesso!';
                 errorMessage.textContent = '';
                 sessionStorage.setItem('loggedInUser', JSON.stringify(user));
-                goToIndexBtn.style.display = 'block'; // Mostrar botão "Ir para o Index"
                 logoutBtn.style.display = 'block'; // Mostrar botão "Sair da Conta"
                 setTimeout(() => {
                     window.location.href = 'index.html';
@@ -60,7 +58,6 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 errorMessage.textContent = 'Email ou senha incorretos. Por favor, tente novamente.';
                 successMessage.textContent = '';
-                goToIndexBtn.style.display = 'none'; // Esconder botão "Ir para o Index"
                 logoutBtn.style.display = 'none'; // Esconder botão "Sair da Conta"
             }
         } else {
@@ -68,13 +65,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    goToIndexBtn.addEventListener('click', function() {
-        window.location.href = 'index.html';
-    });
 
     logoutBtn.addEventListener('click', function() {
         sessionStorage.removeItem('loggedInUser');
-        goToIndexBtn.style.display = 'none'; // Esconder botão "Ir para o Index"
         logoutBtn.style.display = 'none'; // Esconder botão "Sair da Conta"
     });
 });

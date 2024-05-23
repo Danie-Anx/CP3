@@ -43,9 +43,10 @@ header {
     display: flex;
 }
 
-.navbar .nav-links li {
-    margin-left: 2rem;
+.login-container {
+    margin-bottom: 20px; /* Espaçamento entre a div login e o botão de retorno */
 }
+
 
 .navbar .nav-links a {
     text-decoration: none;
@@ -105,6 +106,28 @@ header {
     background: #d11a26;
 }
 
+/* Estilo do botão de logout */
+.navbar .nav-links #logoutBtn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    color: #ff0000;
+    background: #ffffff; /* Verde padrão */
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    cursor: pointer; /* Adicionado cursor pointer */
+}
+
+/* Estilo hover do botão de logout */
+.navbar .nav-links #logoutBtn:hover {
+    background-color: #ff0011; /* Vermelho ao passar o mouse */
+    color: white; /* Texto branco ao passar o mouse */
+}
+
+
+
 /* Media Queries for Responsive Design */
 @media (max-width: 768px) {
     .navbar .nav-links {
@@ -161,6 +184,7 @@ header {
     min-height: 100vh;
     background: #f0f0f0;
     padding: 2rem;
+    background: url('../imagem/imagem-fundo.jpg') no-repeat center center/cover;
 }
 
 .login-container {
@@ -214,9 +238,9 @@ header {
 
 
 .btn {
-    background-color: #4CAF50; /* Green */
+    background-color: #ff0000; /* Green */
     border: none;
-    color: white;
+    color: rgb(255, 255, 255);
     padding: 10px 24px;
     text-align: center;
     text-decoration: none;
@@ -228,5 +252,19 @@ header {
 }
 
 .btn:hover {
-    background-color: #45a049;
+    background-color: #c95151;
+}
+
+
+/* Estilo dos itens da barra de navegação */
+.navbar .nav-links li {
+    margin-left: 2rem;
+    margin-top: 0.5rem; /* Adicionando margem ao topo */
+}
+
+/*Estilo do botão da páginia LOGIN para retornar ao index*/
+.login-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
