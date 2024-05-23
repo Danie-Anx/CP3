@@ -1,50 +1,80 @@
+/*JS index*/
+
 document.addEventListener('DOMContentLoaded', function() {
-    const loginForm = document.getElementById('loginForm');
-    const message = document.getElementById('message');
-    const logoutButton = document.getElementById('logoutButton');
-    const userInfo = document.getElementById('userInfo');
+    const userInfo = document.getElementById('user-info');
+    const logoutBtn = document.getElementById('logout-btn');
 
-    const users = [
-        { email: 'user@example.com', password: 'password123', name: 'John Doe' },
-        { email: 'admin@example.com', password: 'admin123', name: 'Admin User' }
-    ];
+    const user = JSON.parse(sessionStorage.getItem('loggedInUser'));
 
-    function showMessage(msg, isError) {
-        message.textContent = msg;
-        message.style.color = isError ? 'red' : 'green';
-        setTimeout(() => {
-            message.textContent = '';
-        }, 5000);
+    if (user) {
+        userInfo.textContent = `Olá, ${user.email}!`;
     }
 
-    loginForm?.addEventListener('submit', function(event) {
+    logoutBtn.addEventListener('click', function() {
+        sessionStorage.removeItem('loggedInUser');
+        window.location.href = 'login.html';
+    });
+});
+
+
+
+
+/*JS LOGIN*/
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const loginForm = document.getElementById('loginForm');
+    const errorMessage = document.getElementById('error-message');
+    const successMessage = document.getElementById('success-message');
+    const goToIndexBtn = document.getElementById('go-to-index');
+    const logoutBtn = document.getElementById('logout-btn');
+
+    // Simulação de um "banco de dados" com localStorage
+    if (!localStorage.getItem('users')) {
+        localStorage.setItem('users', JSON.stringify([
+            {
+                email: 'usuario@example.com',
+                password: '123456'
+            }
+        ]));
+    }
+
+    loginForm.addEventListener('submit', function(event) {
         event.preventDefault();
+
         const email = loginForm.email.value;
         const password = loginForm.password.value;
-        const user = users.find(u => u.email === email && u.password === password);
+        const users = JSON.parse(localStorage.getItem('users'));
 
-        if (user) {
-            sessionStorage.setItem('user', JSON.stringify(user));
-            showMessage('Login bem-sucedido!', false);
-            setTimeout(() => {
-                window.location.href = 'index.html';
-            }, 5000);
+        if (users) {
+            const user = users.find(user => user.email === email && user.password === password);
+            if (user) {
+                successMessage.textContent = 'Login realizado com sucesso!';
+                errorMessage.textContent = '';
+                sessionStorage.setItem('loggedInUser', JSON.stringify(user));
+                goToIndexBtn.style.display = 'block'; // Mostrar botão "Ir para o Index"
+                logoutBtn.style.display = 'block'; // Mostrar botão "Sair da Conta"
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 2000);
+            } else {
+                errorMessage.textContent = 'Email ou senha incorretos. Por favor, tente novamente.';
+                successMessage.textContent = '';
+                goToIndexBtn.style.display = 'none'; // Esconder botão "Ir para o Index"
+                logoutBtn.style.display = 'none'; // Esconder botão "Sair da Conta"
+            }
         } else {
-            showMessage('Email ou senha inválidos.', true);
+            console.error("Erro: Não foi possível acessar os dados do usuário.");
         }
     });
 
-    if (userInfo) {
-        const user = JSON.parse(sessionStorage.getItem('user'));
-        if (user) {
-            userInfo.textContent = `Bem-vindo, ${user.name}! Seu email é ${user.email}.`;
-        } else {
-            window.location.href = 'login.html';
-        }
-    }
+    goToIndexBtn.addEventListener('click', function() {
+        window.location.href = 'index.html';
+    });
 
-    logoutButton?.addEventListener('click', function() {
-        sessionStorage.removeItem('user');
-        window.location.href = 'login.html';
+    logoutBtn.addEventListener('click', function() {
+        sessionStorage.removeItem('loggedInUser');
+        goToIndexBtn.style.display = 'none'; // Esconder botão "Ir para o Index"
+        logoutBtn.style.display = 'none'; // Esconder botão "Sair da Conta"
     });
 });

@@ -3,17 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bem-vindo</title>
-    <link rel="stylesheet" href="styles.css">
+    <title> Index </title>
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
     <header>
-        <h1>Bem-vindo!</h1>
-        <button id="logoutButton">Sair</button>
+        <nav class="navbar">
+            <div class="container">
+                <a href="#" class="logo">Logo</a>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Sobre</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </div>
+        </nav>
     </header>
     <main>
-        <p id="userInfo"></p>
+        <section class="welcome-section">
+            <div class="welcome-container">
+                <h1>Bem-vindo ao Nosso Site!</h1>
+                <p>Estamos felizes em tê-lo aqui. Navegue pelo nosso site para saber mais sobre nossos serviços.</p>
+                <a href="login.html" class="btn">Faça Login</a>
+            </div>
+        </section>
     </main>
-    <script src="scripts.js"></script>
 </body>
 </html>

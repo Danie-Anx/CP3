@@ -4,24 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
     <main>
-        <h1>Login</h1>
-        <form id="loginForm">
-            <div>
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+        <section class="login-section">
+            <div class="login-container">
+                <h1>Login</h1>
+                <form id="loginForm">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    
+                    <label for="password">Senha:</label>
+                    <input type="password" id="password" name="password" required>
+                    
+                    <button type="submit">Login</button>
+                    <p id="error-message"></p>
+                    <p id="success-message"></p>
+                </form>
+                <button id="go-to-index" class="btn" style="display: none;">Ir para o Index</button>
+                <button id="logout-btn" class="btn" style="display: none;">Sair da Conta</button>
             </div>
-            <div>
-                <label for="password">Senha:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <button type="submit">Entrar</button>
-        </form>
-        <p id="message"></p>
+        </section>
     </main>
-    <script src="scripts.js"></script>
+    <script src="./js/script.js"></script>
 </body>
 </html>
