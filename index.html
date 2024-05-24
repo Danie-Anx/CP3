@@ -14,7 +14,7 @@
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="login.html" id="loginLink">Login</a></li>
-                    <button id="logoutBtn" class="btn" style="display: none;">Logout</button>
+                    <li id="logoutBtnWrapper" style="display: none;"><a href="#" id="logoutBtn" class="btn">Logout</a></li>
                 </ul>
             </div>
         </nav>
@@ -22,9 +22,8 @@
     <main>
         <section class="welcome-section">
             <div class="welcome-container">
-                <h1>Bem-vindo ao Nosso Site!</h1>
+                <h1>Bem-vindo ao Nosso Site, <span id="user-name"></span>!</h1>
                 <p>Estamos felizes em tê-lo aqui. Navegue pelo nosso site para saber mais sobre nossos serviços.</p>
-                
             </div>
         </section>
     </main>

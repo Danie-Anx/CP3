@@ -1,28 +1,28 @@
-/*JS index*/
-
 document.addEventListener('DOMContentLoaded', function() {
-    const logoutBtn = document.getElementById('logoutBtn');
+    // ---- INDEX ----
+    const userNameSpan = document.getElementById('user-name');
+    const logoutBtnWrapper = document.getElementById('logoutBtnWrapper');
+    const logoutBtnIndex = document.getElementById('logoutBtn');
+    const loginLink = document.getElementById('loginLink');
 
     const user = JSON.parse(sessionStorage.getItem('loggedInUser'));
 
     if (user) {
-        document.getElementById('loginLink').style.display = 'none'; // Ocultar link de login
-        logoutBtn.style.display = 'block'; // Mostrar botão de logout
+        if (userNameSpan) {
+            userNameSpan.textContent = user.name || user.email; // Exibir o nome do usuário se disponível, caso contrário, exibir o email
+            logoutBtnWrapper.style.display = 'block'; // Mostrar botão de logout
+            loginLink.style.display = 'none'; // Esconder link de login
+        }
     }
 
-    logoutBtn.addEventListener('click', function() {
-        sessionStorage.removeItem('loggedInUser');
-        window.location.href = 'login.html';
-    });
-});
+    if (logoutBtnIndex) {
+        logoutBtnIndex.addEventListener('click', function() {
+            sessionStorage.removeItem('loggedInUser');
+            window.location.href = 'login.html';
+        });
+    }
 
-
-
-
-
-/*JS LOGIN*/
-
-document.addEventListener('DOMContentLoaded', function() {
+    // ---- LOGIN ----
     const loginForm = document.getElementById('loginForm');
     const errorMessage = document.getElementById('error-message');
     const successMessage = document.getElementById('success-message');
@@ -33,7 +33,13 @@ document.addEventListener('DOMContentLoaded', function() {
         localStorage.setItem('users', JSON.stringify([
             {
                 email: 'usuario@example.com',
-                password: '123456'
+                password: '123456',
+                name: 'Daniel'
+            },
+            {
+                email: 'robert@email.com',
+                password: '1234',
+                name: 'Robert'
             }
         ]));
     }
@@ -45,29 +51,28 @@ document.addEventListener('DOMContentLoaded', function() {
         const password = loginForm.password.value;
         const users = JSON.parse(localStorage.getItem('users'));
 
-        if (users) {
-            const user = users.find(user => user.email === email && user.password === password);
-            if (user) {
-                successMessage.textContent = 'Login realizado com sucesso!';
-                errorMessage.textContent = '';
-                sessionStorage.setItem('loggedInUser', JSON.stringify(user));
-                logoutBtn.style.display = 'block'; // Mostrar botão "Sair da Conta"
-                setTimeout(() => {
-                    window.location.href = 'index.html';
-                }, 2000);
-            } else {
-                errorMessage.textContent = 'Email ou senha incorretos. Por favor, tente novamente.';
-                successMessage.textContent = '';
-                logoutBtn.style.display = 'none'; // Esconder botão "Sair da Conta"
-            }
+        // Ajustando a validação para o novo email e senha
+        const validUser = users.find(user => user.email === email && user.password === password);
+
+        if (validUser) {
+            successMessage.textContent = 'Login realizado com sucesso!';
+            errorMessage.textContent = '';
+            sessionStorage.setItem('loggedInUser', JSON.stringify(validUser));
+            logoutBtn.style.display = 'block'; // Mostrar botão "Sair da Conta"
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 2000);
         } else {
-            console.error("Erro: Não foi possível acessar os dados do usuário.");
+            errorMessage.textContent = 'Email ou senha incorretos. Por favor, tente novamente.';
+            successMessage.textContent = '';
+            logoutBtn.style.display = 'none'; // Esconder botão "Sair da Conta"
         }
     });
 
-
-    logoutBtn.addEventListener('click', function() {
-        sessionStorage.removeItem('loggedInUser');
-        logoutBtn.style.display = 'none'; // Esconder botão "Sair da Conta"
-    });
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', function() {
+            sessionStorage.removeItem('loggedInUser');
+            logoutBtn.style.display = 'none'; // Esconder botão "Sair da Conta"
+        });
+    }
 });

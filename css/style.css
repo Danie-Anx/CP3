@@ -41,14 +41,15 @@ header {
 .navbar .nav-links {
     list-style: none;
     display: flex;
+    align-items: center; /* Centraliza os itens verticalmente */
 }
 
-.login-container {
-    margin-bottom: 20px; /* Espaçamento entre a div login e o botão de retorno */
+.navbar .nav-links li {
+    margin-left: 2rem;
+    margin-top: 0.5rem; /* Adicionando margem ao topo */
 }
 
-
-.navbar .nav-links a {
+.navbar .nav-links li a {
     text-decoration: none;
     color: #fff;
     font-size: 1rem;
@@ -56,10 +57,25 @@ header {
     transition: color 0.3s ease, background 0.3s ease;
 }
 
-.navbar .nav-links a:hover {
+.navbar .nav-links li a:hover {
     color: #e51e2a;
     background: #fff;
     border-radius: 4px;
+}
+
+.navbar .nav-links .btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    background-color: #ff0000;
+    border: none;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+}
+
+.navbar .nav-links .btn:hover {
+    background-color: #493535;
 }
 
 .welcome-section {
@@ -105,28 +121,6 @@ header {
 .welcome-container .btn:hover {
     background: #d11a26;
 }
-
-/* Estilo do botão de logout */
-.navbar .nav-links #logoutBtn {
-    display: inline-block;
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    color: #ff0000;
-    background: #ffffff; /* Verde padrão */
-    border: none;
-    border-radius: 4px;
-    text-decoration: none;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    cursor: pointer; /* Adicionado cursor pointer */
-}
-
-/* Estilo hover do botão de logout */
-.navbar .nav-links #logoutBtn:hover {
-    background-color: #ff0011; /* Vermelho ao passar o mouse */
-    color: white; /* Texto branco ao passar o mouse */
-}
-
-
 
 /* Media Queries for Responsive Design */
 @media (max-width: 768px) {
@@ -176,9 +170,9 @@ header {
 }
 
 /* Style Login */
-
 .login-section {
     display: flex;
+    flex-direction: column; /* Permite que os elementos internos sejam dispostos em coluna */
     justify-content: center;
     align-items: center;
     min-height: 100vh;
@@ -236,11 +230,16 @@ header {
     margin-top: 1rem;
 }
 
+/* Estilo do botão de retorno ao index na página de login */
+.login-back-to-index {
+    margin-top: 1rem; /* Adiciona margem superior para separar do formulário de login */
+}
 
+/* Estilo do botão de logout */
 .btn {
-    background-color: #ff0000; /* Green */
+    background-color: #ff0000; 
     border: none;
-    color: rgb(255, 255, 255);
+    color: #fff;
     padding: 10px 24px;
     text-align: center;
     text-decoration: none;
@@ -253,18 +252,4 @@ header {
 
 .btn:hover {
     background-color: #c95151;
-}
-
-
-/* Estilo dos itens da barra de navegação */
-.navbar .nav-links li {
-    margin-left: 2rem;
-    margin-top: 0.5rem; /* Adicionando margem ao topo */
-}
-
-/*Estilo do botão da páginia LOGIN para retornar ao index*/
-.login-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
