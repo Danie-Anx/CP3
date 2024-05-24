@@ -1,3 +1,4 @@
+/* Estilos gerais */
 * {
     margin: 0;
     padding: 0;
@@ -22,34 +23,33 @@ header {
     z-index: 1000;
 }
 
-.navbar .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.navbar .logo {
+.logo {
     font-size: 1.5rem;
     text-transform: uppercase;
     text-decoration: none;
     color: #fff;
 }
 
-.navbar .nav-links {
+.nav-links {
     list-style: none;
     display: flex;
-    align-items: center; /* Centraliza os itens verticalmente */
+    align-items: center;
 }
 
-.navbar .nav-links li {
+.nav-links li {
     margin-left: 2rem;
-    margin-top: 0.5rem; /* Adicionando margem ao topo */
 }
 
-.navbar .nav-links li a {
+.nav-links li a {
     text-decoration: none;
     color: #fff;
     font-size: 1rem;
@@ -57,27 +57,47 @@ header {
     transition: color 0.3s ease, background 0.3s ease;
 }
 
-.navbar .nav-links li a:hover {
+.nav-links li a:hover {
     color: #e51e2a;
     background: #fff;
     border-radius: 4px;
 }
 
-.navbar .nav-links .btn {
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    background-color: #ff0000;
-    border: none;
-    color: #ffffff;
-    text-decoration: none;
-    border-radius: 8px;
-    transition: background 0.3s ease;
+/* Estilos para tela pequena */
+@media (max-width: 236px) {
+    .container {
+        padding: 0 1rem;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        align-items: center;
+        display: none;
+    }
+
+    .nav-links.active {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-links li {
+        margin: 1rem 0;
+    }
+
+    .toggle {
+        display: block;
+        font-size: 1.5rem;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    .logo {
+        text-align: center;
+    }
 }
 
-.navbar .nav-links .btn:hover {
-    background-color: #493535;
-}
-
+/* Estilos da seção de boas-vindas */
 .welcome-section {
     display: flex;
     justify-content: center;
@@ -122,63 +142,15 @@ header {
     background: #d11a26;
 }
 
-/* Media Queries for Responsive Design */
-@media (max-width: 768px) {
-    .navbar .nav-links {
-        flex-direction: column;
-        display: none;
-        width: 100%;
-    }
-
-    .navbar .nav-links li {
-        margin: 0;
-        text-align: center;
-        padding: 1rem 0;
-    }
-
-    .navbar .nav-links.active {
-        display: flex;
-    }
-
-    .navbar .nav-links a {
-        padding: 1rem;
-        width: 100%;
-    }
-
-    .navbar .toggle {
-        display: block;
-        font-size: 1.5rem;
-        color: #fff;
-        cursor: pointer;
-    }
-
-    .welcome-container {
-        padding: 1rem;
-    }
-
-    .welcome-container h1 {
-        font-size: 2rem;
-    }
-
-    .welcome-container p {
-        font-size: 1rem;
-    }
-
-    .welcome-container .btn {
-        padding: 0.75rem 1rem;
-    }
-}
-
-/* Style Login */
+/* Estilos do formulário de login */
 .login-section {
     display: flex;
-    flex-direction: column; /* Permite que os elementos internos sejam dispostos em coluna */
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: #f0f0f0;
-    padding: 2rem;
     background: url('../imagem/imagem-fundo.jpg') no-repeat center center/cover;
+    padding: 2rem;
 }
 
 .login-container {
@@ -225,19 +197,24 @@ header {
     background: #d11a26;
 }
 
-#login-container #error-message {
+#error-message {
     color: red;
     margin-top: 1rem;
 }
 
+#success-message {
+    color: green;
+    margin-top: 1rem;
+}
+
 /* Estilo do botão de retorno ao index na página de login */
-.login-back-to-index {
+.back-to-index {
     margin-top: 1rem; /* Adiciona margem superior para separar do formulário de login */
 }
 
 /* Estilo do botão de logout */
 .btn {
-    background-color: #ff0000; 
+    background-color: #ff0000;
     border: none;
     color: #fff;
     padding: 10px 24px;
@@ -252,4 +229,11 @@ header {
 
 .btn:hover {
     background-color: #c95151;
+}
+
+/* Estilos específicos para telas menores */
+@media (max-width: 768px) {
+    .login-container {
+        max-width: 300px;
+    }
 }
